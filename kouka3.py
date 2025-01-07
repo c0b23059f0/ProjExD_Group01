@@ -143,7 +143,7 @@ def post_attack_game(screen, player_hp, enemy_hp):
    # ビームの向きを固定して発射
     beams = []
     if mode == "beam":
-        next_beam_time = 15
+        next_beam_time = 25
         beam_size = beam_img_original.get_width()
 
     flash_counter = 0
@@ -185,8 +185,8 @@ def post_attack_game(screen, player_hp, enemy_hp):
 
                 bb_img = bb_imgs[idx]
                 bb_acc = bb_accs[idx]
-                avx = vx * bb_acc
-                avy = vy * bb_acc
+                avx = vx * bb_acc * 0.8
+                avy = vy * bb_acc * 0.8
                 bb_rct.move_ip(avx, avy)
 
                 yoko, tate = check_bound(bb_rct)
@@ -230,7 +230,7 @@ def post_attack_game(screen, player_hp, enemy_hp):
                     'vy': 0,
                     'img': beam_img_original
                 })
-                next_beam_time = tmr + 15
+                next_beam_time = tmr + 25
         
 
             # ビーム更新
@@ -239,8 +239,8 @@ def post_attack_game(screen, player_hp, enemy_hp):
                     if tmr - beam['spawn_time'] > 25:  # 0.5秒後発射
                         vx, vy = calc_orientation(beam['rct'], kk_rct, (0,0))
                         # ビーム速度3倍
-                        vx *= 3
-                        vy *= 3
+                        vx *= 2.7
+                        vy *= 2.7
                         beam['vx'] = vx
                         beam['vy'] = vy
                         beam['img'] = rotate_towards(kk_rct, beam['rct'], beam['img'])
